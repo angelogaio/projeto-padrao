@@ -13,7 +13,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +37,21 @@ export class LoginPageComponent implements OnInit {
     password: [null, [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private router: Router,) {}
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {}
+
+  login() {
+    this.router.navigate(['detail'], { relativeTo: this.route });
+    console.log('oi')
+    // this.router.navigate(['detail'], { state: clientes, relativeTo: this.route });
+    // const { username, password } = this.formGroup.value;
+    // this.authService.login(username, password).subscribe(
+    //   () => {},
+    //   err => {
+    //     const message = err.error?.error_description ?? 'Login Inválido!';
+    //     this.snack.open(message, 'OK');
+    //   }
+    // );
+  }
 }
